@@ -1,10 +1,26 @@
 import FreeCAD
 import Mesh
 import Part
+import sys
+import os
+
+# Read command line arguments
+if len(sys.argv) == 1 +2:
+    stl_file = sys.argv[1 +1]
+    step_file = os.path.splitext(stl_file)[0] + ".step"
+elif len(sys.argv) == 2 +2:
+    stl_file = sys.argv[1 +1]
+    step_file = sys.argv[2 +1]
+else:
+    print("Please provide STL and STEP file paths as command line arguments.")
+    sys.exit(1)
+
+if (os.path.isdir(step_file)):
+    step_file = os.path.join(step_file, os.path.splitext(os.path.basename(stl_file))[0] + ".step")
 
 print("Converting STL to STEP...")
-stl_file = "/home/techplex/projects/pers/stl2step/in/Half_Inch_Hex_Bridgeport_Adapter.stl"
-step_file = "/home/techplex/projects/pers/stl2step/out/Half_Inch_Hex_Bridgeport_Adapter.step"
+print("STL file:", stl_file)
+print("STEP file:", step_file)
 
 print("->>>Mesh.open")
 Mesh.open(stl_file)
@@ -42,4 +58,7 @@ print()
 
 print("Begin command Std_Export")
 Part.export([solidObj], step_file)
+print("End command Std_Export")
+
 print("Done!")
+print(step_file)

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./squashfs-root/usr/bin/freecadcmd scriptnew.py "$@"
