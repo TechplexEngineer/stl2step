@@ -1,0 +1,6 @@
+in/*.step
+.vscode
+squashfs-root
+out/*
+__pycache__
+archive
